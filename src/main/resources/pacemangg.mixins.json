@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "gg.paceman.client.mixin",
+  "mixins": [
+    "MixinInGameTimer"
+  ],
+  "client": [
+  ],
+  "server": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
