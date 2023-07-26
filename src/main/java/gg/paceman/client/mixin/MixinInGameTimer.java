@@ -12,7 +12,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(InGameTimer.class)
 public class MixinInGameTimer {
 
-    @Shadow static @NotNull InGameTimer INSTANCE;
+    @Shadow(remap = false) static @NotNull InGameTimer INSTANCE;
 
     @Inject(method = "complete(JZ)V", at = @At(value = "INVOKE", target = "Lcom/redlimerl/speedrunigt/therun/TheRunRequestHelper;submitTimerData(Lcom/redlimerl/speedrunigt/timer/InGameTimer;)V", shift = At.Shift.AFTER, remap = false), remap = false)
     private static void onComplete(CallbackInfo ci) {
