@@ -14,7 +14,7 @@ on:
   workflow_dispatch:
 
 env:
-  RELEASE_TITLE: "paceman.gg Client SpeedRunIGT Extension - build ${{github.run_number}}"
+  RELEASE_TITLE: "build ${{github.run_number}}"
   RELEASE_TAG: "v${{github.run_number}}"
   RELEASE_FILE: "build/libs/*-v${{github.run_number}}.jar"
 
