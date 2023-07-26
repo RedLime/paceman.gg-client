@@ -23,6 +23,7 @@
   ],
   "depends": {
     "fabricloader": ">=0.13",
-    "minecraft": "${minecraft_version}"
+    "minecraft": "${minecraft_version}",
+    "speedrunigt": ">=13.6"
   }
 }
