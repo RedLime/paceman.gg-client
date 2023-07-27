@@ -49,9 +49,7 @@ jobs:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
           prerelease: false
           title: ${{ env.RELEASE_TITLE }}
-          files: |
-            LICENSE*
-            ${{ env.RELEASE_FILE }}
+          files: ${{steps.download.outputs.download-path}}
       - name: Publish latest tag
         uses: rickstaa/action-create-tag@v1
         with:
