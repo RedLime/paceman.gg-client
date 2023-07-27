@@ -25,13 +25,14 @@ import java.util.concurrent.Executors;
 
 public class PacemanGG {
 
+    private static final ModContainer MOD_CONTAINER = FabricLoader.getInstance().getModContainer("paceman_gg").orElseThrow(RuntimeException::new);
     private static final String KEY_BASE_URL = "https://paceman.gg/api/submitrun";
     private static final ExecutorService threadExecutor = Executors.newSingleThreadExecutor();
 
     private static void setupConnection(HttpURLConnection connection) {
         connection.setConnectTimeout(10000);
         connection.setReadTimeout(10000);
-        connection.setRequestProperty("User-Agent", "paceman.gg-client/"+ SpeedRunIGT.MOD_VERSION);
+        connection.setRequestProperty("User-Agent", "paceman.gg-client/"+ MOD_CONTAINER.getMetadata().getVersion().getFriendlyString());
         connection.setRequestProperty("Content-Type", "application/json; charset=utf-8");
     }
 
