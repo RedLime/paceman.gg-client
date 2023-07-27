@@ -52,11 +52,9 @@ jobs:
           files: |
             LICENSE*
             ${{ env.RELEASE_FILE }}
-      - name: Publish latest
-        uses: "marvinpinto/action-automatic-releases@latest"
+      - name: Publish latest tag
+        uses: rickstaa/action-create-tag@v1
         with:
-          automatic_release_tag: "latest"
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          prerelease: false
-          title: ${{ env.RELEASE_TITLE }}
-          files: ${{steps.download.outputs.download-path}}
+          tag: "latest"
+          tag_exists_error: false
+          message: "Latest release"
