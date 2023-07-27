@@ -3,7 +3,6 @@ package gg.paceman.client;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.redlimerl.speedrunigt.SpeedRunIGT;
-import com.redlimerl.speedrunigt.option.OptionArgument;
 import com.redlimerl.speedrunigt.timer.InGameTimer;
 import com.redlimerl.speedrunigt.timer.InGameTimerUtils;
 import com.redlimerl.speedrunigt.timer.running.RunType;
@@ -12,7 +11,6 @@ import net.fabricmc.loader.api.ModContainer;
 import net.fabricmc.loader.api.metadata.ModOrigin;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.network.PlayerListEntry;
-import net.minecraft.util.Identifier;
 import org.apache.commons.io.IOUtils;
 
 import java.io.BufferedWriter;
@@ -22,7 +20,6 @@ import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
-import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
