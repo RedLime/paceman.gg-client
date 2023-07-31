@@ -8,6 +8,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(InGameTimer.class)
 public class MixinInGameTimer {
@@ -32,5 +33,10 @@ public class MixinInGameTimer {
     @Inject(method = "tryInsertNewAdvancement", at = @At(value = "INVOKE", target = "Lcom/redlimerl/speedrunigt/timer/TimerAdvancementTracker$AdvancementTrack;setComplete(Z)V", shift = At.Shift.AFTER, remap = false), remap = false)
     private void onCompleteAdvancement(String advancementID, String criteriaKey, boolean isAdvancement, CallbackInfo ci) {
         if (isAdvancement) PacemanGG.updateTimerData(INSTANCE, false);
+    }
+
+    @Inject(method = "tryInsertNewTimeline(Ljava/lang/String;Z)Z", at = @At("TAIL"), remap = false)
+    private void onUpdateTimeline(String name, boolean canSendPacket, CallbackInfoReturnable<Boolean> cir) {
+        PacemanGG.updateTimerData(INSTANCE, false);
     }
 }
