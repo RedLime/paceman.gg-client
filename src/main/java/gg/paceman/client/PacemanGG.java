@@ -108,11 +108,6 @@ public class PacemanGG {
         }
         result.add("modlist", mods);
 
-        JsonArray twitch = new JsonArray();
-        JsonArray alt = new JsonArray();
-        result.add("twitch", twitch);
-        result.add("alt", alt);
-
         return result;
     }
 
