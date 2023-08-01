@@ -1,6 +1,8 @@
 package gg.paceman.client;
 
+import com.google.common.collect.Sets;
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.redlimerl.speedrunigt.SpeedRunIGT;
 import com.redlimerl.speedrunigt.timer.InGameTimer;
@@ -20,6 +22,8 @@ import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -86,7 +90,18 @@ public class PacemanGG {
         JsonObject result = new JsonObject();
 
         if (!reset) {
-            result.add("record", InGameTimerUtils.convertTimelineJson(timer));
+            JsonObject record = InGameTimerUtils.convertTimelineJson(timer);
+            JsonObject advancements = record.getAsJsonObject("advancements");
+            Set<String> removal = Sets.newHashSet();
+            for (Map.Entry<String, JsonElement> entry : advancements.entrySet()) {
+                if (!entry.getValue().getAsJsonObject().get("complete").getAsBoolean()) {
+                    removal.add(entry.getKey());
+                }
+                entry.getValue().getAsJsonObject().remove("criteria");
+                entry.getValue().getAsJsonObject().remove("complete");
+            }
+            removal.forEach(advancements::remove);
+            result.add("record", record);
         }
 
         JsonArray nicknames = new JsonArray();
